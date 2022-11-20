@@ -1,0 +1,38 @@
+//NAMA DOMAIN SAJA, JANGAN PAKAI EXTENSI
+const list = ["domain1","domain2","domain3"];
+
+//domaintipe 2 = biz.id
+//domaintipe 3 = my.id
+const domaintipe = 2;
+
+dewabiz(0);
+
+function dewabiz(hitungan){
+	if( domaintipe == 2 ){
+		var tujuan = "https://my.dewabiz.com/cart.php?a=add&bid=2";
+		var domen  = "biz.id";
+	}
+	if( domaintipe == 3 ){
+		var tujuan = "https://my.dewabiz.com/cart.php?a=add&bid=3";
+		var domen  = "my.id";
+	}
+
+	fetch(tujuan).then(function(){
+		fetch("https://my.dewabiz.com/cart.php", {
+		    headers: {
+		        "content-type": "application/x-www-form-urlencoded",
+		        "x-requested-with": "XMLHttpRequest"
+		    },
+		    referrer: "https://my.dewabiz.com/cart.php?a=add&domain=register",
+		    body: `a=addToCart&domain=${list[hitungan]}.${domen}&token=${csrfToken}&whois=0&sideorder=0&idnlanguage=`,
+		    method: "POST",
+		    mode: "cors",
+		    credentials: "include"
+		}).then(response => response.json()).then(data => {
+			console.log(list[hitungan]+"."+domen+" Success Added");
+			if( hitungan < list.length ){
+				dewabiz(hitungan+1);
+			}
+		});
+	});
+}
