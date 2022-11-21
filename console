@@ -9,11 +9,9 @@ dewabiz(0);
 
 function dewabiz(hitungan){
 	if( domaintipe == 2 ){
-		var tujuan = "https://my.dewabiz.com/cart.php?a=add&bid=2";
 		var domen  = "biz.id";
 	}
 	if( domaintipe == 3 ){
-		var tujuan = "https://my.dewabiz.com/cart.php?a=add&bid=3";
 		var domen  = "my.id";
 	}
 
